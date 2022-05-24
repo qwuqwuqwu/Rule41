@@ -21,13 +21,31 @@ struct Z {
 // ========================================================
 class Widget {
 public:
-    Widget() {};
-    virtual ~Widget() {};
-    //virtual std::size_t size() const { return 0; };
-    virtual Z size() const { return Z( 1 ); }; // size() do not return int
-    virtual void normalize() {};
-    void swap( Widget& other ) {};
+    Widget( int nVal ) : m_nVal( nVal ) {}
+    virtual ~Widget() {}
+    //virtual std::size_t size() const { return 0; }
+    virtual Z size() const { return Z( m_nVal ); } // size() do not return int
+    virtual void normalize() { m_nVal /= 2; }
+    void swap( Widget& other )
+    {
+        int nVal = m_nVal;
+        m_nVal = other.m_nVal;
+        other.m_nVal = nVal;
+    }
+
+public:
+    int GetVal( void ) { return m_nVal; }
+
+private:
+    int m_nVal;
 };
+
+ostream &operator<<( ostream &s, Widget w )
+{
+    // 實作
+    cout << "Widget val is " << w.GetVal() << endl;
+    return s;
+}
 // ========================================================
 
 class Y {
@@ -44,7 +62,7 @@ public:
 // X(w) != g_someNastyWidget
 bool operator!=( const X& x, const Y& y )
 {
-    return false;
+    return true;
 }
 
 template< typename T >
@@ -59,7 +77,10 @@ void doProcessing( T& w )
 
 int main( void )
 {
-    Widget MyWidget;
+    Widget MyWidget( 11 );
+    cout << MyWidget;
+
     doProcessing( MyWidget );
+    cout << MyWidget;
     return 0;
 }

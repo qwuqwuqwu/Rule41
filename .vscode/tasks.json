@@ -3,7 +3,30 @@
 	"tasks": [
 		{
 			"type": "cppbuild",
-			"label": "C/C++: clang++ 建置使用中檔案",
+			"label": "Windows C/C++: g++.exe 建置使用中檔案",
+			"command": "C:\\msys64\\mingw64\\bin\\g++.exe",
+			"args": [
+				"-fdiagnostics-color=always",
+				"-g",
+                "${workspaceFolder}/*.cpp",
+				"-o",
+				"${workspaceFolder}/main.exe"
+			],
+			"options": {
+				"cwd": "C:\\msys64\\mingw64\\bin"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "編譯器: C:\\msys64\\mingw64\\bin\\g++.exe"
+		},
+		{
+			"type": "cppbuild",
+			"label": "Mac C/C++: clang++ 建置使用中檔案",
 			"command": "/usr/bin/clang++",
 			"args": [
 				"-fdiagnostics-color=always",
