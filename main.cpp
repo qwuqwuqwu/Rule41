@@ -37,7 +37,6 @@ public:
     int GetVal( void ) { return m_nVal; }
     friend ostream &operator<<( ostream &s, Widget w )
     {
-        // 實作
         cout << "Widget val is " << w.GetVal() << endl;
         return s;
     }
